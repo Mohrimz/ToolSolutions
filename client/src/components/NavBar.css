@@ -1,0 +1,357 @@
+.tm-navbar {
+  z-index: 10;
+  margin: 0 auto 0 auto;
+  display: flex;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: 0;
+  width: 100%;
+}
+
+.tm-navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 850px;
+  border-radius: 5px;
+  border: 1.5px solid #654ef6;
+  background: #fff;
+  padding: 0 1.2rem;
+  min-height: 20px;
+  height: 80px;
+  box-shadow: 0 2px 12px 0 #eae6fa44;
+  position: relative;
+}
+
+.tm-navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.0001rem;
+  margin-right: 0;
+}
+
+.tm-logo-img {
+  height: 74px;
+  width: 250px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.tm-brand-text {
+  font-family: 'Anton', Arial, sans-serif;
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: #222;
+  letter-spacing: 0.5px;
+}
+
+.tm-navbar-center {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex: 1;
+  justify-content: center;
+}
+
+.tm-navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tm-navbar-links li a {
+  color: #222;
+  text-decoration: none;
+  font-size: 0.89rem;
+  font-weight: 400;
+  position: relative;
+  padding: 0.15rem 0.22rem;
+  transition: color 0.18s;
+  font-family: 'Cooper Hewitt', Arial, sans-serif;
+}
+
+.tm-navbar-links li a.active,
+.tm-navbar-links li a:hover {
+  color: #6A4DFF;
+}
+
+.tm-navbar-links li a::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0; right: 0; bottom: -2px;
+  height: 2px;
+  background: #6A4DFF;
+  border-radius: 2px;
+  width: 0;
+  transition: width 0.3s;
+}
+
+.tm-navbar-links li a.active::after,
+.tm-navbar-links li a:hover::after {
+  width: 100%;
+}
+
+.tm-navbar-links li:last-child {
+  margin-right: 1.2rem;
+}
+
+.tm-navbar-auth {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-left: 0;
+}
+
+.tm-signin-btn {
+  background: none;
+  border: none;
+  color: #222;
+  font-size: 0.89rem;
+  font-weight: 400;
+  padding: 0.22rem 0.7rem;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+}
+.tm-signin-btn:hover {
+  color: #6A4DFF;
+  background: #f3f4f6;
+}
+
+.tm-signup-btn {
+  background: #3b82f6;
+  color: #fff;
+  border: none;
+  font-size: 0.89rem;
+  font-weight: 500;
+  padding: 0.22rem 0.7rem;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background 0.18s;
+}
+.tm-signup-btn:hover {
+  background: #2563eb;
+}
+
+.tm-navbar-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 38px;
+  height: 38px;
+  margin-left: 0.5rem;
+  z-index: 20;
+}
+.tm-bar {
+  display: block;
+  width: 24px;
+  height: 3px;
+  margin: 3px 0;
+  background: #222;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+.tm-bar1.open { transform: translateY(6px) rotate(45deg); }
+.tm-bar2.open { opacity: 0; }
+.tm-bar3.open { transform: translateY(-6px) rotate(-45deg); }
+
+@media (max-width: 1024px) {
+  .tm-navbar-inner {
+    max-width: 98vw;
+    padding: 0 0.7rem;
+  }
+  .tm-navbar-center {
+    gap: 1rem;
+  }
+  .tm-navbar-links {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .tm-navbar-inner {
+    max-width: 99vw;
+    padding: 0 0.5rem;
+  }
+  .tm-navbar-logo {
+    gap: 0.7rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .tm-navbar-inner {
+    flex-direction: row;
+    padding: 0 0.3rem;
+    min-height: 44px;
+    width: 92vw;
+    max-width: 92vw;
+    margin-left: 4vw;
+    margin-right: 4vw;
+  }
+  .tm-navbar-hamburger {
+    display: flex;
+  }
+  .tm-navbar-center {
+    display: none;
+  }
+}
+
+.tm-mobile-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #fff;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+}
+
+.tm-mobile-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0;
+}
+
+.tm-mobile-overlay .tm-navbar-logo {
+  margin-bottom: 0;
+  margin-right: 0;
+  gap: 0.5rem;
+}
+
+.tm-mobile-overlay .tm-logo-img {
+  height: 100px;
+  width: 220px;
+}
+
+.tm-mobile-links {
+  list-style: none;
+  padding: 0;
+  margin: 2.2rem 0 0 0;
+  width: 100%;
+}
+
+.tm-mobile-links li {
+  margin-bottom: 1.1rem;
+}
+
+.tm-mobile-links li a {
+  color: #222;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 400;
+  position: relative;
+  padding: 0.5rem 0.2rem;
+  width: 100%;
+  display: block;
+  font-family: 'Cooper Hewitt', Arial, sans-serif;
+}
+
+.tm-mobile-links li a.active,
+.tm-mobile-links li a:hover {
+  color: #6A4DFF;
+}
+
+.tm-link-underline {
+  display: block;
+  position: absolute;
+  left: 0; right: 0; bottom: -2px;
+  height: 2px;
+  background: #6A4DFF;
+  border-radius: 2px;
+  width: 100%;
+  animation: tm-underline-in 0.25s;
+}
+
+.tm-close-btn {
+  background: none;
+  border: none;
+  font-size: 2.2rem;
+  color: #222;
+  cursor: pointer;
+  z-index: 2100;
+  position: absolute;
+  top: 1.2rem;
+  right: 3.5rem; /* Move further left, adjust as needed */
+  /* Add a background and border-radius for a solid look: */
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px #0001;
+  padding: 0.2em 0.4em;
+  border: 2.5px solid #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.18s, border 0.18s;
+}
+.tm-close-btn:hover {
+  background: #f3f4f6;
+  border-color: #6A4DFF;
+}
+.tm-close-btn svg {
+  stroke: #222;
+  stroke-width: 3.5;
+}
+
+@keyframes tm-dropdown-in {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tm-mobile-auth {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  width: 100%;
+  margin-top: 0.5rem;
+  margin-left: 0;
+}
+
+.tm-mobile-auth button {
+  background: none;
+  border: none;
+  color: #222;
+  text-align: left;
+  font-size: 1.1rem;
+  font-family: 'Cooper Hewitt', Arial, sans-serif;
+  font-weight: 400;
+  padding: 0.5rem 0.2rem;
+  width: 100%;
+  display: block;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.18s;
+}
+
+.tm-mobile-auth button.active,
+.tm-mobile-auth button:hover {
+  color: #6A4DFF;
+}
+
+.tm-mobile-auth button.active::after,
+.tm-mobile-auth button:hover::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0; right: 0; bottom: -2px;
+  height: 2px;
+  background: #6A4DFF;
+  border-radius: 2px;
+  width: 100%;
+  animation: tm-underline-in 0.25s;
+}
