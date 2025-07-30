@@ -1,8 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Header.css";
 
 export default function Header() {
   const [navOpen, setNavOpen] = useState(false);
+
+  // Effect to toggle no-scroll on body when navOpen changes
+  useEffect(() => {
+    if (navOpen) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+
+    // Clean up in case component unmounts
+    return () => {
+      document.body.classList.remove("no-scroll");
+    };
+  }, [navOpen]);
 
   const handleHamburgerClick = () => setNavOpen((open) => !open);
   const handleNavLinkClick = () => setNavOpen(false);
@@ -14,7 +28,6 @@ export default function Header() {
           <img src="/LGM.png" alt="Logo" className="site-logo" />
           <span className="brand-name">TOOL SOLUTIONS</span>
         </div>
-        {/* Hamburger only for mobile */}
         <div className="search-hamburger-row">
           <form className="search-bar">
             <input type="text" placeholder="I am shopping for..." />
@@ -33,7 +46,6 @@ export default function Header() {
           </button>
         </div>
       </div>
-      {/* Desktop/Laptop Nav */}
       <nav className="main-nav desktop-nav">
         <ul>
           <li><a href="#">HOME</a></li>
@@ -42,7 +54,6 @@ export default function Header() {
           <li><a href="#">CONTACT</a></li>
         </ul>
       </nav>
-      {/* Mobile Nav */}
       <nav className={`main-nav mobile-nav${navOpen ? " show" : ""}`}>
         <ul>
           <li><a href="#" onClick={handleNavLinkClick}>HOME</a></li>
