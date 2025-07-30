@@ -145,6 +145,7 @@
     align-items: stretch;
     gap: 0.7rem;
     padding: 1rem 1vw 0.7rem 1vw;
+    position: relative;
   }
   .logo-area {
     justify-content: center;
@@ -175,22 +176,53 @@
     display: none;
   }
   .mobile-nav.show {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: block;
     position: absolute;
     top: 100%;
-    left: 0;
-    width: 100vw;
+    right: 1rem;
+    width: 200px;
     background: #fff;
-    box-shadow: 0 4px 24px #0001;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    border-radius: 0.8rem;
     z-index: 1001;
-    border-top: 1px solid #eee;
-    padding-bottom: 1rem;
-    animation: fadeInNav 0.2s;
+    padding: 1rem;
+    animation: slideInFromRight 0.3s ease-out;
+  }
+  .mobile-nav.show ul {
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 0;
+    margin: 0;
+    align-items: flex-start;
+  }
+  .mobile-nav.show ul li {
+    width: 100%;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .mobile-nav.show ul li:last-child {
+    border-bottom: none;
+  }
+  .mobile-nav.show ul li a {
+    display: block;
+    width: 100%;
+    font-size: 0.9rem;
+    color: #333;
+    font-weight: 500;
   }
   .desktop-nav {
     display: none !important;
+  }
+}
+
+@keyframes slideInFromRight {
+  from { 
+    opacity: 0; 
+    transform: translateX(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateX(0); 
   }
 }
 
