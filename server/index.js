@@ -2,11 +2,16 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const Product = require('./Product');
+
 const app = express();
 
-mongoose.connect('mongodb://127.0.0.1:27017/ecommerce') // use 127.0.0.1 for local MongoDB
-  .then(() => console.log('MongoDB connected'))
-  .catch((err) => console.error('MongoDB connection error:', err));
+// ✅ Connect to MongoDB Atlas
+mongoose.connect('mongodb+srv://toolmartwholesale:Rimzan%40123@cluster0.tzphpdb.mongodb.net/ecommerce?retryWrites=true&w=majority&appName=Cluster0', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log('✅ MongoDB Atlas connected'))
+.catch((err) => console.error('❌ MongoDB connection error:', err));
 
 app.use(cors());
 app.use(express.json());
@@ -37,4 +42,4 @@ app.post('/api/products', async (req, res) => {
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));

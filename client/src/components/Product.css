@@ -53,7 +53,7 @@
 }
 
 .product-card {
-    background: #fafafa;
+    background: white;
     border: 1px solid #eee;
     border-radius: 0.7rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -73,10 +73,10 @@
 }
 
 .product-img {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     object-fit: contain;
-    margin-bottom: 1rem;
+    margin-bottom: -2rem;
 }
 
 .product-price {
@@ -110,6 +110,89 @@
   border-top: 1.5px solid #e0e0e0;
   margin: 0.7rem 0 1.2rem 0;
   width: 100%;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  position: relative;
+  background: #fff;
+  border-radius: 1.2rem;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+  padding: 1.5rem;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-img {
+  max-width: 70vw;
+  max-height: 70vh;
+  border-radius: 1rem;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+}
+
+.modal-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.8rem;
+  background: none;
+  border: none;
+  font-size: 2.2rem;
+  color: #333;
+  cursor: pointer;
+  line-height: 1;
+  z-index: 10;
+}
+
+.modal-buy {
+  margin-top: 1.5rem;
+  padding: 0.7rem 2.2rem;
+  background: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 0.7rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(52,152,219,0.08);
+  transition: background 0.2s, transform 0.2s;
+}
+
+.modal-buy:hover {
+  background: #217dbb;
+  transform: translateY(-2px) scale(1.04);
+}
+
+#root.blurred {
+  filter: blur(6px) brightness(0.9);
+  pointer-events: none;
+  user-select: none;
+  transition: filter 0.2s;
+}
+
+#root.blurred-except-modal > *:not(.modal-overlay) {
+  filter: blur(6px) brightness(0.9);
+  pointer-events: none;
+  user-select: none;
+  transition: filter 0.2s;
+}
+
+.modal-overlay.no-blur,
+.modal-content.no-blur {
+  filter: none !important;
+  pointer-events: auto !important;
+  user-select: auto !important;
 }
 
 @media (max-width: 768px) {
