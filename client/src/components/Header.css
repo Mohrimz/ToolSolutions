@@ -171,24 +171,48 @@
     margin-left: 0.5rem;
     flex-shrink: 0;
   }
+  /* Mobile slide-in nav panel */
   .mobile-nav {
-    display: none;
-  }
-  .mobile-nav.show {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 240px;
+    background: #ffffff;
+    box-shadow: -4px 0 16px rgba(0,0,0,0.1);
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1001;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100vw;
-    background: #fff;
-    box-shadow: 0 4px 24px #0001;
-    z-index: 1001;
-    border-top: 1px solid #eee;
-    padding-bottom: 1rem;
-    animation: fadeInNav 0.2s;
+    padding-top: 4.5rem; /* leave space for header */
+    pointer-events: none; /* disable interaction when hidden */
   }
+
+  /* Show state */
+  .mobile-nav.show {
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+
+  /* Vertically stacked nav links */
+  .mobile-nav ul {
+    flex-direction: column;
+    gap: 1.2rem;
+    padding: 0 1.2rem;
+    align-items: flex-start;
+  }
+
+  /* Ensure links take full row width for easy tapping */
+  .mobile-nav li {
+    width: 100%;
+  }
+  .mobile-nav li a {
+    font-size: 1rem;
+    width: 100%;
+  }
+
+  /* Hide desktop nav */
   .desktop-nav {
     display: none !important;
   }
