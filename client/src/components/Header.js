@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+
 import "./Header.css";
 
 const Nav = () => {
@@ -72,20 +74,56 @@ export default function Header() {
           </button>
         </div>
       </div>
+
+      {/* Desktop navigation */}
       <nav className="main-nav desktop-nav">
         <ul>
-          <li><a href="#">HOME</a></li>
-          <li><a href="#">PRODUCTS</a></li>
-          <li><a href="#">ABOUT</a></li>
-          <li><a href="#">CONTACT</a></li>
+          <li>
+            <Link to="/" onClick={handleNavLinkClick}>
+              HOME
+            </Link>
+          </li>
+          <li>
+            <Link to="/products" onClick={handleNavLinkClick}>
+              PRODUCTS
+            </Link>
+          </li>
+          <li>
+            <Link to="/about" onClick={handleNavLinkClick}>
+              ABOUT
+            </Link>
+          </li>
+          <li>
+            <Link to="/contact" onClick={handleNavLinkClick}>
+              CONTACT
+            </Link>
+          </li>
         </ul>
       </nav>
+
+      {/* Mobile navigation */}
       <nav className={`main-nav mobile-nav${navOpen ? " show" : ""}`}>
         <ul>
-          <li><a href="#" onClick={handleNavLinkClick}>HOME</a></li>
-          <li><a href="#" onClick={handleNavLinkClick}>PRODUCTS</a></li>
-          <li><a href="#" onClick={handleNavLinkClick}>ABOUT</a></li>
-          <li><a href="#" onClick={handleNavLinkClick}>CONTACT</a></li>
+          <li>
+            <Link to="/" onClick={handleNavLinkClick}>
+              HOME
+            </Link>
+          </li>
+          <li>
+            <Link to="/products" onClick={handleNavLinkClick}>
+              PRODUCTS
+            </Link>
+          </li>
+          <li>
+            <Link to="/about" onClick={handleNavLinkClick}>
+              ABOUT
+            </Link>
+          </li>
+          <li>
+            <Link to="/contact" onClick={handleNavLinkClick}>
+              CONTACT
+            </Link>
+          </li>
         </ul>
       </nav>
     </header>
