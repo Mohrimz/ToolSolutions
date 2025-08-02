@@ -1,10 +1,36 @@
 import React, { useState, useEffect } from "react";
 import "./Header.css";
 
+const Nav = () => {
+  return (
+    <div className="topbar-links-row">
+      <span className="welcome-message">
+        Welcome to Sri Lanka's Largest Hand Tool Store
+      </span>
+      <div className="topbar-links">
+        <a href="#" className="top-link">
+          <i className="fas fa-map-marker-alt"></i> Store Locator
+        </a>
+        <span className="topbar-sep">|</span>
+        <a href="#" className="top-link">
+          <i className="fas fa-truck"></i> Track Your Order
+        </a>
+        <span className="topbar-sep">|</span>
+        <a href="#" className="top-link">
+          <i className="fas fa-shopping-bag"></i> Shop
+        </a>
+        <span className="topbar-sep">|</span>
+        <a href="#" className="top-link">
+          <i className="fas fa-user"></i> My Account
+        </a>
+      </div>
+    </div>
+  );
+};
+
 export default function Header() {
   const [navOpen, setNavOpen] = useState(false);
 
-  // Effect to toggle no-scroll on body when navOpen changes
   useEffect(() => {
     if (navOpen) {
       document.body.classList.add("no-scroll");
@@ -12,7 +38,6 @@ export default function Header() {
       document.body.classList.remove("no-scroll");
     }
 
-    // Clean up in case component unmounts
     return () => {
       document.body.classList.remove("no-scroll");
     };
@@ -23,6 +48,7 @@ export default function Header() {
 
   return (
     <header className="main-header">
+      <Nav />
       <div className="header-top">
         <div className="logo-area">
           <img src="/LGM.png" alt="Logo" className="site-logo" />
