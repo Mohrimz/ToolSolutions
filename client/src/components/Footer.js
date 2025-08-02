@@ -70,7 +70,7 @@ export function Footer() {
         <AnimatedContainer className="footer-brand">
           <Frame className="footer-frame-icon" />
           <p className="footer-copyright">
-            © {new Date().getFullYear()} Asme. All rights reserved.
+            © {new Date().getFullYear()} Tool Solutions. All rights reserved.
           </p>
         </AnimatedContainer>
         <div className="footer-links-grid">

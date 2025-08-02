@@ -53,7 +53,8 @@ export default function WelcomeSection() {
         </div>
         <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
           <img
-            src="/uploads/welcome.jpg"
+            //load image from assets folder
+            src={require("../assets/TOOL.jpg")}
             alt="Welcome to Tool Solutions"
             style={{
               width: "100%",
