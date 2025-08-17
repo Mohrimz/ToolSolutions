@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-import "./Product.css";
+import "./Product3.css";
 
-export default function Products() {
+export default function Products3() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -11,7 +11,7 @@ export default function Products() {
   const [modalDetail, setModalDetail] = useState("");
 
   useEffect(() => {
-    fetch("/products.php")
+    fetch("/product3.php")
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch products");
         return res.json();
@@ -85,8 +85,8 @@ export default function Products() {
   return (
     <>
       {modal}
-      <section id="products" className="products-section scroll-mt-20">
-        <h2 className="products-title">Featured Products</h2>
+      <section id="products3" className="products-section scroll-mt-20">
+        <h2 className="products-title">Trending Products</h2>
         <hr className="products-divider" />
         <div className="products-list">
           {products.map((prod) => (

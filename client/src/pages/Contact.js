@@ -9,8 +9,7 @@ export default function Contact() {
         <p className="contact-subtext">We’d love to hear from you! Reach out for inquiries, support, or collaboration.</p>
         <div className="contact-details">
           <p><strong>Email:</strong> info@toolsolutions.lk</p>
-          <p><strong>Phone:</strong> +94 11 123 4567</p>
-          <p><strong>Address:</strong> 123 Tool Street, Colombo, Sri Lanka</p>
+          <p><strong>Phone:</strong> +94 78 566 116</p>
         </div>
       </div>
 

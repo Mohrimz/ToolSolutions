@@ -15,12 +15,6 @@ export default function WelcomeSection() {
             Tool Solutions is a leading wholesale supplier of high-quality hand tools in Sri Lanka, trusted by workshops, construction crews, and industrial buyers. We specialize in delivering durable, precision-made tools that meet the demands of professionals across the country.
           </p>
         </div>
-        <div className="welcome-image">
-          <img
-            src={require("../assets/TOOL.jpg")}
-            alt="Welcome to Tool Solutions"
-          />
-        </div>
       </section>
 
       {/* Why Choose Us Section */}
