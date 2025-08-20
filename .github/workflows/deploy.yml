@@ -1,0 +1,46 @@
+name: Deploy to Hostinger via SFTP
+
+on:
+  push:
+    branches: [ "main" ]   # change if your default branch is different
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install & Build React
+        working-directory: client
+        run: |
+          npm ci
+          npm run build
+
+      - name: Prepare deploy folder
+        run: |
+          rm -rf deploy
+          mkdir -p deploy
+          cp -r client/build/* deploy/
+          mkdir -p deploy/api
+          cp -r Muiez-SQL/api/* deploy/api/ 2>/dev/null || true
+          mkdir -p deploy/uploads
+          cp -r Muiez-SQL/uploads/* deploy/uploads/ 2>/dev/null || true
+          if [ -f Muiez-SQL/.htaccess ]; then cp Muiez-SQL/.htaccess deploy/.htaccess; fi
+
+      - name: Deploy via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+          server: ${{ secrets.HOSTINGER_SFTP_HOST }}
+          port: ${{ secrets.HOSTINGER_SFTP_PORT }}
+          username: ${{ secrets.HOSTINGER_SFTP_USER }}
+          ssh_private_key: ${{ secrets.HOSTINGER_SSH_KEY }}
+          local_path: "./deploy/*"
+          remote_path: ${{ secrets.HOSTINGER_DEPLOY_PATH }}
+          # delete_remote_files: true   # optional (dangerous, wipes before upload)
