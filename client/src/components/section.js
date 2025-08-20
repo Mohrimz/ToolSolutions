@@ -11,9 +11,6 @@ export default function Section() {
     <section className="section-container enhanced-section">
       <div className="text-content enhanced-text">
         <div className="logo-row">
-          <div className="logo-circle" aria-label="Brand logo ELORA">
-            <span className="logo-text">ELORA</span>
-          </div>
           <h1 className="headline">QUALITY HAND TOOLS FOR ALL</h1>
         </div>
         <p className="subtext">
