@@ -2,7 +2,7 @@ name: Deploy to Hostinger via SFTP
 
 on:
   push:
-    branches: [ "main" ]   # change if your default branch is different
+    branches: [ "main" ]   # change to "master" if that's your default
 
 jobs:
   build-and-deploy:
@@ -12,27 +12,54 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Show repo tree (debug)
+        run: |
+          echo "PWD = $(pwd)"
+          ls -la
+          echo "---- client ----"
+          ls -la client || true
+          echo "---- api ----"
+          ls -la api || true
+          echo "---- uploads ----"
+          ls -la uploads || true
+
+      # Build React app if you have a client/ folder
       - name: Setup Node.js
+        if: ${{ hashFiles('client/package.json') != '' }}
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - name: Install & Build React
+      - name: Install & Build (client)
+        if: ${{ hashFiles('client/package.json') != '' }}
         working-directory: client
         run: |
-          npm ci
+          if [ -f package-lock.json ]; then npm ci; else npm install; fi
           npm run build
 
+      # Prepare deploy bundle (root of your website)
       - name: Prepare deploy folder
         run: |
           rm -rf deploy
           mkdir -p deploy
-          cp -r client/build/* deploy/
-          mkdir -p deploy/api
-          cp -r Muiez-SQL/api/* deploy/api/ 2>/dev/null || true
-          mkdir -p deploy/uploads
-          cp -r Muiez-SQL/uploads/* deploy/uploads/ 2>/dev/null || true
-          if [ -f Muiez-SQL/.htaccess ]; then cp Muiez-SQL/.htaccess deploy/.htaccess; fi
+          # If React build exists, copy it as the site root
+          if [ -d "client/build" ]; then
+            cp -r client/build/* deploy/
+          fi
+          # Copy API (if exists) to /api
+          if [ -d "api" ]; then
+            mkdir -p deploy/api
+            cp -r api/* deploy/api/
+          fi
+          # Copy uploads (if exists) to /uploads
+          if [ -d "uploads" ]; then
+            mkdir -p deploy/uploads
+            cp -r uploads/* deploy/uploads/
+          fi
+          # Copy .htaccess if present
+          if [ -f ".htaccess" ]; then
+            cp .htaccess deploy/.htaccess
+          fi
 
       - name: Deploy via SFTP
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
@@ -42,5 +69,5 @@ jobs:
           username: ${{ secrets.HOSTINGER_SFTP_USER }}
           ssh_private_key: ${{ secrets.HOSTINGER_SSH_KEY }}
           local_path: "./deploy/*"
-          remote_path: ${{ secrets.HOSTINGER_DEPLOY_PATH }}
-          # delete_remote_files: true   # optional (dangerous, wipes before upload)
+          remote_path: "${{ secrets.HOSTINGER_DEPLOY_PATH }}"  # e.g. /home/u137369492/public_html
+          # delete_remote_files: true   # (optional/dangerous)
